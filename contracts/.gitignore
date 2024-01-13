@@ -16,3 +16,5 @@ Cargo.lock
 
 # Substrate Contracts Node Persistence Cache
 .node-data
+
+.env

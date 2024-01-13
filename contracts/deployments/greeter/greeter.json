@@ -1,12 +1,12 @@
 {
   "source": {
-    "hash": "0x04cc94b119f1384943fcc08a65fd1af8e56a04f538cda4b9f20bd1ef4cf5fbe8",
+    "hash": "0x3f999682ac1b147b25a061490439761450ed45bdc0251aaf2f8181df08ff3a3d",
     "language": "ink! 4.3.0",
-    "compiler": "rustc 1.77.0-nightly",
+    "compiler": "rustc 1.75.0",
     "build_info": {
       "build_mode": "Release",
       "cargo_contract_version": "3.2.0",
-      "rust_toolchain": "nightly-aarch64-apple-darwin",
+      "rust_toolchain": "stable-aarch64-apple-darwin",
       "wasm_opt_settings": {
         "keep_debug_symbols": false,
         "optimization_passes": "Z"
@@ -14,10 +14,10 @@
     }
   },
   "contract": {
-    "name": "dummy",
-    "version": "0.1.0",
+    "name": "greeter",
+    "version": "0.0.1",
     "authors": [
-      "mauricewbr <weber.maurice@proton.me>"
+      "Scio Labs <hello@scio.xyz>"
     ]
   },
   "spec": {
@@ -25,17 +25,19 @@
       {
         "args": [
           {
-            "label": "total_supply",
+            "label": "init_value",
             "type": {
               "displayName": [
-                "Balance"
+                "String"
               ],
               "type": 0
             }
           }
         ],
         "default": false,
-        "docs": [],
+        "docs": [
+          "Creates a new greeter contract initialized with the given value."
+        ],
         "label": "new",
         "payable": false,
         "returnType": {
@@ -46,6 +48,23 @@
           "type": 1
         },
         "selector": "0x9bae9d5e"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [
+          "Creates a new greeter contract initialized to 'Hello ink!'."
+        ],
+        "label": "default",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 1
+        },
+        "selector": "0xed4b9d1b"
       }
     ],
     "docs": [],
@@ -54,41 +73,70 @@
         "displayName": [
           "AccountId"
         ],
-        "type": 5
+        "type": 6
       },
       "balance": {
         "displayName": [
           "Balance"
         ],
-        "type": 0
+        "type": 9
       },
       "blockNumber": {
         "displayName": [
           "BlockNumber"
         ],
-        "type": 13
+        "type": 12
       },
       "chainExtension": {
         "displayName": [
           "ChainExtension"
         ],
-        "type": 14
+        "type": 13
       },
       "hash": {
         "displayName": [
           "Hash"
         ],
-        "type": 11
+        "type": 10
       },
       "maxEventTopics": 4,
       "timestamp": {
         "displayName": [
           "Timestamp"
         ],
-        "type": 12
+        "type": 11
       }
     },
-    "events": [],
+    "events": [
+      {
+        "args": [
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "from",
+            "type": {
+              "displayName": [
+                "Option"
+              ],
+              "type": 5
+            }
+          },
+          {
+            "docs": [],
+            "indexed": false,
+            "label": "message",
+            "type": {
+              "displayName": [
+                "String"
+              ],
+              "type": 0
+            }
+          }
+        ],
+        "docs": [],
+        "label": "Greeted"
+      }
+    ],
     "lang_error": {
       "displayName": [
         "ink",
@@ -100,34 +148,10 @@
       {
         "args": [],
         "default": false,
-        "docs": [],
-        "label": "total_supply",
-        "mutates": false,
-        "payable": false,
-        "returnType": {
-          "displayName": [
-            "ink",
-            "MessageResult"
-          ],
-          "type": 4
-        },
-        "selector": "0xdb6375a8"
-      },
-      {
-        "args": [
-          {
-            "label": "owner",
-            "type": {
-              "displayName": [
-                "AccountId"
-              ],
-              "type": 5
-            }
-          }
+        "docs": [
+          " Returns the current value of `message`."
         ],
-        "default": false,
-        "docs": [],
-        "label": "balance_of",
+        "label": "greet",
         "mutates": false,
         "payable": false,
         "returnType": {
@@ -137,32 +161,25 @@
           ],
           "type": 4
         },
-        "selector": "0x0f755a56"
+        "selector": "0x052cda08"
       },
       {
         "args": [
           {
-            "label": "to",
+            "label": "new_value",
             "type": {
               "displayName": [
-                "AccountId"
-              ],
-              "type": 5
-            }
-          },
-          {
-            "label": "value",
-            "type": {
-              "displayName": [
-                "Balance"
+                "String"
               ],
               "type": 0
             }
           }
         ],
         "default": false,
-        "docs": [],
-        "label": "transfer",
+        "docs": [
+          " Sets `message` to the given value."
+        ],
+        "label": "set_message",
         "mutates": true,
         "payable": false,
         "returnType": {
@@ -170,9 +187,9 @@
             "ink",
             "MessageResult"
           ],
-          "type": 8
+          "type": 1
         },
-        "selector": "0x84a15da1"
+        "selector": "0x1fe7426f"
       }
     ]
   },
@@ -188,24 +205,10 @@
                   "ty": 0
                 }
               },
-              "name": "total_supply"
-            },
-            {
-              "layout": {
-                "root": {
-                  "layout": {
-                    "leaf": {
-                      "key": "0x344a174d",
-                      "ty": 0
-                    }
-                  },
-                  "root_key": "0x344a174d"
-                }
-              },
-              "name": "balances"
+              "name": "message"
             }
           ],
-          "name": "Dummy"
+          "name": "Greeter"
         }
       },
       "root_key": "0x00000000"
@@ -216,7 +219,7 @@
       "id": 0,
       "type": {
         "def": {
-          "primitive": "u128"
+          "primitive": "str"
         }
       }
     },
@@ -335,10 +338,43 @@
       "id": 5,
       "type": {
         "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 6
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 6
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "type": {
+        "def": {
           "composite": {
             "fields": [
               {
-                "type": 6,
+                "type": 7,
                 "typeName": "[u8; 32]"
               }
             ]
@@ -352,21 +388,13 @@
       }
     },
     {
-      "id": 6,
+      "id": 7,
       "type": {
         "def": {
           "array": {
             "len": 32,
-            "type": 7
+            "type": 8
           }
-        }
-      }
-    },
-    {
-      "id": 7,
-      "type": {
-        "def": {
-          "primitive": "u8"
         }
       }
     },
@@ -374,114 +402,26 @@
       "id": 8,
       "type": {
         "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 9
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 3
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 9
-          },
-          {
-            "name": "E",
-            "type": 3
-          }
-        ],
-        "path": [
-          "Result"
-        ]
+          "primitive": "u8"
+        }
       }
     },
     {
       "id": 9,
       "type": {
         "def": {
-          "variant": {
-            "variants": [
-              {
-                "fields": [
-                  {
-                    "type": 2
-                  }
-                ],
-                "index": 0,
-                "name": "Ok"
-              },
-              {
-                "fields": [
-                  {
-                    "type": 10
-                  }
-                ],
-                "index": 1,
-                "name": "Err"
-              }
-            ]
-          }
-        },
-        "params": [
-          {
-            "name": "T",
-            "type": 2
-          },
-          {
-            "name": "E",
-            "type": 10
-          }
-        ],
-        "path": [
-          "Result"
-        ]
+          "primitive": "u128"
+        }
       }
     },
     {
       "id": 10,
       "type": {
         "def": {
-          "variant": {
-            "variants": [
-              {
-                "index": 0,
-                "name": "InsufficientBalance"
-              }
-            ]
-          }
-        },
-        "path": [
-          "dummy",
-          "dummy",
-          "Error"
-        ]
-      }
-    },
-    {
-      "id": 11,
-      "type": {
-        "def": {
           "composite": {
             "fields": [
               {
-                "type": 6,
+                "type": 7,
                 "typeName": "[u8; 32]"
               }
             ]
@@ -495,7 +435,7 @@
       }
     },
     {
-      "id": 12,
+      "id": 11,
       "type": {
         "def": {
           "primitive": "u64"
@@ -503,7 +443,7 @@
       }
     },
     {
-      "id": 13,
+      "id": 12,
       "type": {
         "def": {
           "primitive": "u32"
@@ -511,7 +451,7 @@
       }
     },
     {
-      "id": 14,
+      "id": 13,
       "type": {
         "def": {
           "variant": {}
