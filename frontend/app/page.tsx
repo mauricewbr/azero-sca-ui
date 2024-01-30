@@ -1,36 +1,28 @@
 'use client'
 
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp'
-import { ethers, verifyMessage } from 'ethers'
+import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import { Account } from 'ui/Account'
 
-type CreateAccountType = { credentials: string }
 type InjectedExtension = Awaited<ReturnType<typeof web3Enable>>[number]
 
 export default function Home() {
   const [loadingAccounts, setLoadingAccounts] = useState<boolean>(false)
   const [connectedAccounts, setConnectedAccounts] = useState<Record<string, string[]>>({})
 
-  const [extensions, setExtensions] = useState<InjectedExtension[]>([])
-
   const loadAccountsFromExtensions = async () => {
-    const injectedExtensions = await web3Enable('azero_sca')
-
-    setExtensions(injectedExtensions)
-    console.log(injectedExtensions)
+    await web3Enable('azero_sca')
   }
 
   useEffect(() => {
     async function isMetaMaskConnected() {
-      // Check if MetaMask's Ethereum provider is injected
       if (window.ethereum) {
         try {
-          // Request the currently connected accounts
           const accounts: string[] = await window.ethereum.request({ method: 'eth_accounts' })
 
-          // If accounts are returned, MetaMask is connected
           if (accounts.length > 0) {
+            // This should call getAccounts on backend
             setConnectedAccounts((prevState) => ({ ...prevState, ['metamask']: accounts }))
 
             return true
@@ -48,87 +40,93 @@ export default function Home() {
       }
     }
 
-    async function isAlephZeroSignerConnect() {
+    async function isAlephZeroSignerConnected() {
       await web3Enable('azero_sca')
       const accounts = await web3Accounts({ extensions: ['aleph-zero-signer'] })
 
+      // This should call getAccounts on backend
       setConnectedAccounts((prevState) => ({
         ...prevState,
         ['aleph-zero-signer']: accounts.map((account) => account.address),
       }))
     }
 
+    async function isKeplrConnected() {
+      if (!window.keplr) {
+        alert('Please install keplr extension')
+      } else {
+        const chainId = 'cosmoshub-4'
+
+        await window.keplr.enable(chainId)
+
+        const offlineSigner = window.keplr.getOfflineSigner(chainId)
+
+        const accounts = await offlineSigner.getAccounts()
+        console.log(accounts)
+
+        // This should call getAccounts on backend
+        setConnectedAccounts((prevState) => ({
+          ...prevState,
+          ['cosm']: accounts.map((account) => account.address),
+        }))
+      }
+    }
+
     setLoadingAccounts(true)
     isMetaMaskConnected()
-    isAlephZeroSignerConnect()
+    isAlephZeroSignerConnected()
+    isKeplrConnected()
     setLoadingAccounts(false)
   }, [])
-
-  // useEffect(() => {
-  //   async function connectToBlockchain() {
-  //     const wsProvider = new WsProvider('wss://ws.test.azero.dev')
-  //     const api = await ApiPromise.create({ provider: wsProvider })
-  //     const chain = (await api.rpc.system.chain())?.toString() || ''
-
-  //     setApiOutput(chain)
-  //   }
-
-  //   connectToBlockchain()
-  // }, [])
-
-  // useEffect(() => {
-  //   async function getCurrentGreeting() {
-  //     const wsProvider = new WsProvider('wss://ws.test.azero.dev')
-  //     const api = await ApiPromise.create({ provider: wsProvider })
-
-  //     const abi = await import('@azero-sca-ui/contracts/deployments/greeter/greeter.json')
-  //     const { address } = await import(
-  //       '@azero-sca-ui/contracts/deployments/greeter/alephzero-testnet'
-  //     )
-
-  //     const contract = new ContractPromise(api, abi, address)
-
-  //     try {
-  //       const gasLimit = getMaxGasLimit(api)
-  //       const { result, output } = await contract.query.greet(address, {
-  //         gasLimit,
-  //       })
-  //       console.log(result.toHuman())
-  //       if (result.isOk) {
-  //         console.log(output?.toHuman())
-  //       }
-  //     } catch {}
-  //   }
-
-  //   getCurrentGreeting()
-  // }, [])
 
   async function handleCreateMetaMaskAccount() {
     let signer = null
 
     let provider
     if (window.ethereum == null) {
-      // If MetaMask is not installed, we use the default provider,
-      // which is backed by a variety of third-party services (such
-      // as INFURA). They do not have private keys installed,
-      // so they only have read-only access
       console.log('MetaMask not installed; using read-only defaults')
       provider = ethers.getDefaultProvider('infura')
     } else {
-      // Connect to the MetaMask EIP-1193 object. This is a standard
-      // protocol that allows Ethers access to make all read-only
-      // requests through MetaMask.
       provider = new ethers.BrowserProvider(window.ethereum)
 
-      // It also provides an opportunity to request access to write
-      // operations, which will be performed by the private key
-      // that MetaMask manages for the user.
       signer = await provider.getSigner()
-      const message = 'sign into ethers.org?'
-      const sig = await signer.signMessage(message)
-      const verifyResult = verifyMessage(message, sig)
-      console.log(sig)
-      console.log(verifyResult)
+      const message = 'SAMPLE_MESSAGE'
+      const signature = await signer.signMessage(message)
+
+      console.log(signer)
+
+      const keplrPayload = {
+        message,
+        signature,
+        signer: signer.address,
+      }
+
+      // Call createAccount contract, then refetch connected accounts
+    }
+  }
+
+  async function handleCreateKeplrAccount() {
+    if (!window.keplr) {
+      alert('Please install keplr extension')
+    } else {
+      const chainId = 'cosmoshub-4'
+
+      await window.keplr.enable(chainId)
+
+      const offlineSigner = window.keplr.getOfflineSigner(chainId)
+      const accounts = await offlineSigner.getAccounts()
+
+      const message = 'SOME_MESSAGE'
+      const res = await window.keplr.signArbitrary(chainId, accounts[0].address, message)
+
+      const keplrPayload = {
+        message,
+        signature: res.signature,
+        pubkey: res.pub_key.value,
+        hrp: 'cosmos',
+      }
+
+      // Call createAccount contract, then refetch connected accounts
     }
   }
 
@@ -161,6 +159,12 @@ export default function Home() {
             className="flex w-full justify-center px-3 py-2 bg-blue-200 text-blue-700 font-semibold rounded-xl hover:bg-blue-300 hover:text-blue-800"
           >
             Connect Azero Signer
+          </button>
+          <button
+            onClick={handleCreateKeplrAccount}
+            className="flex w-full justify-center px-3 py-2 bg-blue-200 text-blue-700 font-semibold rounded-xl hover:bg-blue-300 hover:text-blue-800"
+          >
+            Connect Keplr
           </button>
         </div>
       </div>
