@@ -23,7 +23,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@/utils/*": ["../contracts/scripts/utils/*"]
-    }
+    },
+    "typeRoots": ["./node_modules/@types", "./helpers/etherum.d.ts"]
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules", ".next", "out"]

@@ -93,7 +93,6 @@ export function Sidebar() {
             <ul className="mb-6 flex flex-col gap-1">
               <SidebarItem pathname={pathname} slug={'/'} title={'Home'} />
               <SidebarItem pathname={pathname} slug={'accounts'} title={'Accounts'} />
-              <SidebarItem pathname={pathname} slug={'transactions'} title={'Transactions'} />
             </ul>
           </div>
         </nav>
