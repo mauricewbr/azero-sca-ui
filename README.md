@@ -38,6 +38,11 @@ This project is close to our hearts as our team is navigating blockchain ecosyst
 - Expand possible signing schemes to hardware-based methods like iPhone's PassKey, essentially allowing anybody to sign transactions with their phone (wink wink, Telekom)
 - Integrate token-bound accounts to enable free trade of user accounts inside registry
 
+## Deployment addresses
+
+- Account Registry: 5CY1z6pA5NA2gg6kykpGkn7gCUg3hPEbk7uhDq2G4fcwq4j4
+- Smart Account: 5DTQieD3Ej9QNDus6nui38hwQcBNUmW3VGtidSaC3irreaiN
+
 ## Running the project Locally
 
 This local setup is designed to run in conjunction with the Aleph Zero testnet.
