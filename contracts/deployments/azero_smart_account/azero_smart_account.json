@@ -1,0 +1,1382 @@
+{
+  "source": {
+    "hash": "0x45ab6b880ce0f06e24ae1ad73c194f0c4d938cab5fe49d4d4b9775c0bcfd5561",
+    "language": "ink! 4.3.0",
+    "compiler": "rustc 1.75.0",
+    "build_info": {
+      "build_mode": "Release",
+      "cargo_contract_version": "3.2.0",
+      "rust_toolchain": "stable-aarch64-apple-darwin",
+      "wasm_opt_settings": {
+        "keep_debug_symbols": false,
+        "optimization_passes": "Z"
+      }
+    }
+  },
+  "contract": {
+    "name": "azero-smart-account",
+    "version": "0.0.1",
+    "authors": [
+      "kromsten <kromsten@megarock.labs>"
+    ],
+    "repository": "https://github.com/kromsten/azero-sca-contracts"
+  },
+  "spec": {
+    "constructors": [
+      {
+        "args": [
+          {
+            "label": "creds",
+            "type": {
+              "displayName": [
+                "CredentialData"
+              ],
+              "type": 13
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "new",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 17
+        },
+        "selector": "0x9bae9d5e"
+      }
+    ],
+    "docs": [],
+    "environment": {
+      "accountId": {
+        "displayName": [
+          "AccountId"
+        ],
+        "type": 11
+      },
+      "balance": {
+        "displayName": [
+          "Balance"
+        ],
+        "type": 34
+      },
+      "blockNumber": {
+        "displayName": [
+          "BlockNumber"
+        ],
+        "type": 36
+      },
+      "chainExtension": {
+        "displayName": [
+          "ChainExtension"
+        ],
+        "type": 37
+      },
+      "hash": {
+        "displayName": [
+          "Hash"
+        ],
+        "type": 35
+      },
+      "maxEventTopics": 4,
+      "timestamp": {
+        "displayName": [
+          "Timestamp"
+        ],
+        "type": 22
+      }
+    },
+    "events": [
+      {
+        "args": [
+          {
+            "docs": [
+              " Indicates whether the transaction executed successfully. If so the `Ok` value",
+              " holds the output in bytes. The Option is `None` when the transaction",
+              " was executed through `invoke_transaction` rather than",
+              " `evaluate_transaction`."
+            ],
+            "indexed": true,
+            "label": "result",
+            "type": {
+              "displayName": [
+                "Result"
+              ],
+              "type": 32
+            }
+          }
+        ],
+        "docs": [],
+        "label": "Execution"
+      }
+    ],
+    "lang_error": {
+      "displayName": [
+        "ink",
+        "LangError"
+      ],
+      "type": 19
+    },
+    "messages": [
+      {
+        "args": [
+          {
+            "label": "creds",
+            "type": {
+              "displayName": [
+                "CredentialData"
+              ],
+              "type": 13
+            }
+          },
+          {
+            "label": "tranasction",
+            "type": {
+              "displayName": [
+                "Transaction"
+              ],
+              "type": 20
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "invoke_transaction",
+        "mutates": true,
+        "payable": true,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 23
+        },
+        "selector": "0x3cd4b36d"
+      },
+      {
+        "args": [
+          {
+            "label": "new_owner",
+            "type": {
+              "displayName": [
+                "ownable_external",
+                "TransferOwnershipInput1"
+              ],
+              "type": 27
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "Ownable::transfer_ownership",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 28
+        },
+        "selector": "0x11f43efd"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "Ownable::owner",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 31
+        },
+        "selector": "0x4fa43c8c"
+      },
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "Ownable::renounce_ownership",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 28
+        },
+        "selector": "0x5e228753"
+      }
+    ]
+  },
+  "storage": {
+    "root": {
+      "layout": {
+        "struct": {
+          "fields": [
+            {
+              "layout": {
+                "leaf": {
+                  "key": "0x00000000",
+                  "ty": 0
+                }
+              },
+              "name": "credentials"
+            },
+            {
+              "layout": {
+                "struct": {
+                  "fields": [
+                    {
+                      "layout": {
+                        "root": {
+                          "layout": {
+                            "enum": {
+                              "dispatchKey": "0x6f713913",
+                              "name": "Option",
+                              "variants": {
+                                "0": {
+                                  "fields": [],
+                                  "name": "None"
+                                },
+                                "1": {
+                                  "fields": [
+                                    {
+                                      "layout": {
+                                        "leaf": {
+                                          "key": "0x6f713913",
+                                          "ty": 11
+                                        }
+                                      },
+                                      "name": "0"
+                                    }
+                                  ],
+                                  "name": "Some"
+                                }
+                              }
+                            }
+                          },
+                          "root_key": "0x6f713913"
+                        }
+                      },
+                      "name": "owner"
+                    }
+                  ],
+                  "name": "Data"
+                }
+              },
+              "name": "ownable"
+            }
+          ],
+          "name": "AccountContract"
+        }
+      },
+      "root_key": "0x00000000"
+    }
+  },
+  "types": [
+    {
+      "id": 0,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 1
+          }
+        }
+      }
+    },
+    {
+      "id": 1,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 2,
+                    "typeName": "Caller"
+                  }
+                ],
+                "index": 0,
+                "name": "Caller"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 5,
+                    "typeName": "EvmCredential"
+                  }
+                ],
+                "index": 1,
+                "name": "Evm"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 6,
+                    "typeName": "Secp256k1"
+                  }
+                ],
+                "index": 2,
+                "name": "Secp256k1"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 7,
+                    "typeName": "Ed25519"
+                  }
+                ],
+                "index": 3,
+                "name": "Ed25519"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 8,
+                    "typeName": "CosmosArbitrary"
+                  }
+                ],
+                "index": 4,
+                "name": "CosmosArbitrary"
+              }
+            ]
+          }
+        },
+        "path": [
+          "smart_account_auth",
+          "credential",
+          "Credential"
+        ]
+      }
+    },
+    {
+      "id": 2,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "id",
+                "type": 3,
+                "typeName": "CredentialId"
+              }
+            ]
+          }
+        },
+        "path": [
+          "saa_custom",
+          "caller",
+          "Caller"
+        ]
+      }
+    },
+    {
+      "id": 3,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 4
+          }
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": {
+        "def": {
+          "primitive": "u8"
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "message",
+                "type": 3,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "signature",
+                "type": 3,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "signer",
+                "type": 3,
+                "typeName": "Vec<u8>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "saa_custom",
+          "evm",
+          "evm",
+          "EvmCredential"
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "pubkey",
+                "type": 3,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "message",
+                "type": 3,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "signature",
+                "type": 3,
+                "typeName": "Vec<u8>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "saa_curves",
+          "secp256k1",
+          "Secp256k1"
+        ]
+      }
+    },
+    {
+      "id": 7,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "pubkey",
+                "type": 3,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "message",
+                "type": 3,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "signature",
+                "type": 3,
+                "typeName": "Vec<u8>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "saa_curves",
+          "ed25519",
+          "Ed25519"
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "pubkey",
+                "type": 3,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "message",
+                "type": 3,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "signature",
+                "type": 3,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "hrp",
+                "type": 9,
+                "typeName": "Option<String>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "saa_custom",
+          "cosmos",
+          "arbitrary",
+          "CosmosArbitrary"
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 10
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "type": {
+        "def": {
+          "primitive": "str"
+        }
+      }
+    },
+    {
+      "id": 11,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 12,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "AccountId"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "array": {
+            "len": 32,
+            "type": 4
+          }
+        }
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "credentials",
+                "type": 0,
+                "typeName": "Credentials"
+              },
+              {
+                "name": "primary_index",
+                "type": 14,
+                "typeName": "Option<u8>"
+              },
+              {
+                "name": "with_caller",
+                "type": 15,
+                "typeName": "Option<bool>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "smart_account_auth",
+          "data",
+          "CredentialData"
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 4
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 4
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 15,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 16
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 16
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "type": {
+        "def": {
+          "primitive": "bool"
+        }
+      }
+    },
+    {
+      "id": 17,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 18
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 19
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 18
+          },
+          {
+            "name": "E",
+            "type": 19
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "type": {
+        "def": {
+          "tuple": []
+        }
+      }
+    },
+    {
+      "id": 19,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 1,
+                "name": "CouldNotReadInput"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "LangError"
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "callee",
+                "type": 11,
+                "typeName": "AccountId"
+              },
+              {
+                "name": "selector",
+                "type": 21,
+                "typeName": "[u8; 4]"
+              },
+              {
+                "name": "input",
+                "type": 3,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "gas_limit",
+                "type": 22,
+                "typeName": "u64"
+              },
+              {
+                "name": "allow_reentry",
+                "type": 16,
+                "typeName": "bool"
+              }
+            ]
+          }
+        },
+        "path": [
+          "azero_smart_account",
+          "contract",
+          "abstract_account",
+          "Transaction"
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "type": {
+        "def": {
+          "array": {
+            "len": 4,
+            "type": 4
+          }
+        }
+      }
+    },
+    {
+      "id": 22,
+      "type": {
+        "def": {
+          "primitive": "u64"
+        }
+      }
+    },
+    {
+      "id": 23,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 24
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 19
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 24
+          },
+          {
+            "name": "E",
+            "type": 19
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 24,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 18
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 25
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 18
+          },
+          {
+            "name": "E",
+            "type": 25
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 25,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 10,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 0,
+                "name": "Unauthorized"
+              },
+              {
+                "index": 1,
+                "name": "EmptyCredentials"
+              },
+              {
+                "index": 2,
+                "name": "AccountExists"
+              },
+              {
+                "index": 3,
+                "name": "AccountNotExist"
+              },
+              {
+                "index": 4,
+                "name": "CredentialExists"
+              },
+              {
+                "index": 5,
+                "name": "NoCredentials"
+              },
+              {
+                "index": 6,
+                "name": "TransactionFailed"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 26,
+                    "typeName": "saa::AuthError"
+                  }
+                ],
+                "index": 7,
+                "name": "VerifiableAuth"
+              }
+            ]
+          }
+        },
+        "path": [
+          "azero_smart_account",
+          "error",
+          "ContractError"
+        ]
+      }
+    },
+    {
+      "id": 26,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "NoCredentials"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 1,
+                "name": "InvalidLength"
+              },
+              {
+                "index": 2,
+                "name": "RecoveryParam"
+              },
+              {
+                "index": 3,
+                "name": "RecoveryMismatch"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 4,
+                "name": "Signature"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 5,
+                "name": "Recovery"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 6,
+                "name": "Generic"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 7,
+                "name": "Crypto"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 8,
+                "name": "SemVer"
+              }
+            ]
+          }
+        },
+        "path": [
+          "saa_common",
+          "errors",
+          "AuthError"
+        ]
+      }
+    },
+    {
+      "id": 27,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 11
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 11
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 28,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 29
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 19
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 29
+          },
+          {
+            "name": "E",
+            "type": 19
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 29,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 18
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 30
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 18
+          },
+          {
+            "name": "E",
+            "type": 30
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "CallerIsNotOwner"
+              },
+              {
+                "index": 1,
+                "name": "NewOwnerIsNotSet"
+              }
+            ]
+          }
+        },
+        "path": [
+          "openbrush_contracts",
+          "traits",
+          "errors",
+          "ownable",
+          "OwnableError"
+        ]
+      }
+    },
+    {
+      "id": 31,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 27
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 19
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 27
+          },
+          {
+            "name": "E",
+            "type": 19
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 32,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 33
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 25
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 33
+          },
+          {
+            "name": "E",
+            "type": 25
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 33,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 3
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 3
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 34,
+      "type": {
+        "def": {
+          "primitive": "u128"
+        }
+      }
+    },
+    {
+      "id": 35,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 12,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "Hash"
+        ]
+      }
+    },
+    {
+      "id": 36,
+      "type": {
+        "def": {
+          "primitive": "u32"
+        }
+      }
+    },
+    {
+      "id": 37,
+      "type": {
+        "def": {
+          "variant": {}
+        },
+        "path": [
+          "ink_env",
+          "types",
+          "NoChainExtension"
+        ]
+      }
+    }
+  ],
+  "version": "4"
+}

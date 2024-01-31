@@ -1,0 +1,1232 @@
+{
+  "source": {
+    "hash": "0xfe0b51473b99cb251d68c71e19eec12198b6f22cb573d33fb3076a1552234d15",
+    "language": "ink! 4.3.0",
+    "compiler": "rustc 1.75.0",
+    "build_info": {
+      "build_mode": "Release",
+      "cargo_contract_version": "3.2.0",
+      "rust_toolchain": "stable-aarch64-apple-darwin",
+      "wasm_opt_settings": {
+        "keep_debug_symbols": false,
+        "optimization_passes": "Z"
+      }
+    }
+  },
+  "contract": {
+    "name": "azero-account-registry",
+    "version": "0.0.1",
+    "authors": [
+      "kromsten <kromsten@megarock.labs>"
+    ],
+    "repository": "https://github.com/kromsten/azero-sca-contracts"
+  },
+  "spec": {
+    "constructors": [
+      {
+        "args": [],
+        "default": false,
+        "docs": [],
+        "label": "new",
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink_primitives",
+            "ConstructorResult"
+          ],
+          "type": 5
+        },
+        "selector": "0x9bae9d5e"
+      }
+    ],
+    "docs": [],
+    "environment": {
+      "accountId": {
+        "displayName": [
+          "AccountId"
+        ],
+        "type": 0
+      },
+      "balance": {
+        "displayName": [
+          "Balance"
+        ],
+        "type": 31
+      },
+      "blockNumber": {
+        "displayName": [
+          "BlockNumber"
+        ],
+        "type": 33
+      },
+      "chainExtension": {
+        "displayName": [
+          "ChainExtension"
+        ],
+        "type": 34
+      },
+      "hash": {
+        "displayName": [
+          "Hash"
+        ],
+        "type": 26
+      },
+      "maxEventTopics": 4,
+      "timestamp": {
+        "displayName": [
+          "Timestamp"
+        ],
+        "type": 32
+      }
+    },
+    "events": [],
+    "lang_error": {
+      "displayName": [
+        "ink",
+        "LangError"
+      ],
+      "type": 7
+    },
+    "messages": [
+      {
+        "args": [
+          {
+            "label": "creds",
+            "type": {
+              "displayName": [
+                "Vec"
+              ],
+              "type": 3
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "get_account",
+        "mutates": false,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 8
+        },
+        "selector": "0xd0f48683"
+      },
+      {
+        "args": [
+          {
+            "label": "creds",
+            "type": {
+              "displayName": [
+                "CredentialData"
+              ],
+              "type": 13
+            }
+          },
+          {
+            "label": "account_hash",
+            "type": {
+              "displayName": [
+                "Hash"
+              ],
+              "type": 26
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "create_account",
+        "mutates": true,
+        "payable": true,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 27
+        },
+        "selector": "0x470c28ee"
+      },
+      {
+        "args": [
+          {
+            "label": "auth_credentials",
+            "type": {
+              "displayName": [
+                "CredentialData"
+              ],
+              "type": 13
+            }
+          },
+          {
+            "label": "add_credentials",
+            "type": {
+              "displayName": [
+                "CredentialData"
+              ],
+              "type": 13
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "update_credentials",
+        "mutates": true,
+        "payable": true,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 27
+        },
+        "selector": "0xbaa89dbb"
+      },
+      {
+        "args": [
+          {
+            "label": "auth_credentials",
+            "type": {
+              "displayName": [
+                "CredentialData"
+              ],
+              "type": 13
+            }
+          },
+          {
+            "label": "remove_credentials",
+            "type": {
+              "displayName": [
+                "CredentialData"
+              ],
+              "type": 13
+            }
+          }
+        ],
+        "default": false,
+        "docs": [],
+        "label": "remove_credentials",
+        "mutates": true,
+        "payable": false,
+        "returnType": {
+          "displayName": [
+            "ink",
+            "MessageResult"
+          ],
+          "type": 27
+        },
+        "selector": "0x2fb7603c"
+      }
+    ]
+  },
+  "storage": {
+    "root": {
+      "layout": {
+        "struct": {
+          "fields": [
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "struct": {
+                      "fields": [
+                        {
+                          "layout": {
+                            "struct": {
+                              "fields": [
+                                {
+                                  "layout": {
+                                    "struct": {
+                                      "fields": [
+                                        {
+                                          "layout": {
+                                            "leaf": {
+                                              "key": "0x68b70d4d",
+                                              "ty": 0
+                                            }
+                                          },
+                                          "name": "account_id"
+                                        }
+                                      ],
+                                      "name": "CallBuilder"
+                                    }
+                                  },
+                                  "name": "inner"
+                                }
+                              ],
+                              "name": "AccountContractRef"
+                            }
+                          },
+                          "name": "account"
+                        },
+                        {
+                          "layout": {
+                            "leaf": {
+                              "key": "0x68b70d4d",
+                              "ty": 3
+                            }
+                          },
+                          "name": "credential_ids"
+                        }
+                      ],
+                      "name": "AccountData"
+                    }
+                  },
+                  "root_key": "0x68b70d4d"
+                }
+              },
+              "name": "accounts"
+            },
+            {
+              "layout": {
+                "root": {
+                  "layout": {
+                    "leaf": {
+                      "key": "0x79c26c67",
+                      "ty": 4
+                    }
+                  },
+                  "root_key": "0x79c26c67"
+                }
+              },
+              "name": "credential_ids"
+            }
+          ],
+          "name": "RegistryContract"
+        }
+      },
+      "root_key": "0x00000000"
+    }
+  },
+  "types": [
+    {
+      "id": 0,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 1,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "AccountId"
+        ]
+      }
+    },
+    {
+      "id": 1,
+      "type": {
+        "def": {
+          "array": {
+            "len": 32,
+            "type": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "type": {
+        "def": {
+          "primitive": "u8"
+        }
+      }
+    },
+    {
+      "id": 3,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 4
+          }
+        }
+      }
+    },
+    {
+      "id": 4,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 2
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 6
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 7
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 6
+          },
+          {
+            "name": "E",
+            "type": 7
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 6,
+      "type": {
+        "def": {
+          "tuple": []
+        }
+      }
+    },
+    {
+      "id": 7,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 1,
+                "name": "CouldNotReadInput"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "LangError"
+        ]
+      }
+    },
+    {
+      "id": 8,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 9
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 7
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 9
+          },
+          {
+            "name": "E",
+            "type": 7
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 9,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 10
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 10
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 10,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "account",
+                "type": 11,
+                "typeName": "AccountRef"
+              },
+              {
+                "name": "credential_ids",
+                "type": 3,
+                "typeName": "Vec<CredentialId>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "azero_account_registry",
+          "account",
+          "AccountData"
+        ]
+      }
+    },
+    {
+      "id": 11,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "inner",
+                "type": 12,
+                "typeName": "<AccountContract as::ink::codegen::ContractCallBuilder>::Type"
+              }
+            ]
+          }
+        },
+        "path": [
+          "azero_smart_account",
+          "contract",
+          "abstract_account",
+          "AccountContractRef"
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "account_id",
+                "type": 0,
+                "typeName": "AccountId"
+              }
+            ]
+          }
+        },
+        "path": [
+          "azero_smart_account",
+          "contract",
+          "abstract_account",
+          "CallBuilder"
+        ]
+      }
+    },
+    {
+      "id": 13,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "credentials",
+                "type": 14,
+                "typeName": "Credentials"
+              },
+              {
+                "name": "primary_index",
+                "type": 23,
+                "typeName": "Option<u8>"
+              },
+              {
+                "name": "with_caller",
+                "type": 24,
+                "typeName": "Option<bool>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "smart_account_auth",
+          "data",
+          "CredentialData"
+        ]
+      }
+    },
+    {
+      "id": 14,
+      "type": {
+        "def": {
+          "sequence": {
+            "type": 15
+          }
+        }
+      }
+    },
+    {
+      "id": 15,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 16,
+                    "typeName": "Caller"
+                  }
+                ],
+                "index": 0,
+                "name": "Caller"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 17,
+                    "typeName": "EvmCredential"
+                  }
+                ],
+                "index": 1,
+                "name": "Evm"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 18,
+                    "typeName": "Secp256k1"
+                  }
+                ],
+                "index": 2,
+                "name": "Secp256k1"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 19,
+                    "typeName": "Ed25519"
+                  }
+                ],
+                "index": 3,
+                "name": "Ed25519"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 20,
+                    "typeName": "CosmosArbitrary"
+                  }
+                ],
+                "index": 4,
+                "name": "CosmosArbitrary"
+              }
+            ]
+          }
+        },
+        "path": [
+          "smart_account_auth",
+          "credential",
+          "Credential"
+        ]
+      }
+    },
+    {
+      "id": 16,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "id",
+                "type": 4,
+                "typeName": "CredentialId"
+              }
+            ]
+          }
+        },
+        "path": [
+          "saa_custom",
+          "caller",
+          "Caller"
+        ]
+      }
+    },
+    {
+      "id": 17,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "message",
+                "type": 4,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "signature",
+                "type": 4,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "signer",
+                "type": 4,
+                "typeName": "Vec<u8>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "saa_custom",
+          "evm",
+          "evm",
+          "EvmCredential"
+        ]
+      }
+    },
+    {
+      "id": 18,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "pubkey",
+                "type": 4,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "message",
+                "type": 4,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "signature",
+                "type": 4,
+                "typeName": "Vec<u8>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "saa_curves",
+          "secp256k1",
+          "Secp256k1"
+        ]
+      }
+    },
+    {
+      "id": 19,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "pubkey",
+                "type": 4,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "message",
+                "type": 4,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "signature",
+                "type": 4,
+                "typeName": "Vec<u8>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "saa_curves",
+          "ed25519",
+          "Ed25519"
+        ]
+      }
+    },
+    {
+      "id": 20,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "name": "pubkey",
+                "type": 4,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "message",
+                "type": 4,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "signature",
+                "type": 4,
+                "typeName": "Vec<u8>"
+              },
+              {
+                "name": "hrp",
+                "type": 21,
+                "typeName": "Option<String>"
+              }
+            ]
+          }
+        },
+        "path": [
+          "saa_custom",
+          "cosmos",
+          "arbitrary",
+          "CosmosArbitrary"
+        ]
+      }
+    },
+    {
+      "id": 21,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 22
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 22
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 22,
+      "type": {
+        "def": {
+          "primitive": "str"
+        }
+      }
+    },
+    {
+      "id": 23,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 2
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 2
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 24,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "None"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 25
+                  }
+                ],
+                "index": 1,
+                "name": "Some"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 25
+          }
+        ],
+        "path": [
+          "Option"
+        ]
+      }
+    },
+    {
+      "id": 25,
+      "type": {
+        "def": {
+          "primitive": "bool"
+        }
+      }
+    },
+    {
+      "id": 26,
+      "type": {
+        "def": {
+          "composite": {
+            "fields": [
+              {
+                "type": 1,
+                "typeName": "[u8; 32]"
+              }
+            ]
+          }
+        },
+        "path": [
+          "ink_primitives",
+          "types",
+          "Hash"
+        ]
+      }
+    },
+    {
+      "id": 27,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 28
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 7
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 28
+          },
+          {
+            "name": "E",
+            "type": 7
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 28,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "fields": [
+                  {
+                    "type": 6
+                  }
+                ],
+                "index": 0,
+                "name": "Ok"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 29
+                  }
+                ],
+                "index": 1,
+                "name": "Err"
+              }
+            ]
+          }
+        },
+        "params": [
+          {
+            "name": "T",
+            "type": 6
+          },
+          {
+            "name": "E",
+            "type": 29
+          }
+        ],
+        "path": [
+          "Result"
+        ]
+      }
+    },
+    {
+      "id": 29,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "AccountExists"
+              },
+              {
+                "index": 1,
+                "name": "AccountNotExist"
+              },
+              {
+                "index": 2,
+                "name": "HasCredentials"
+              },
+              {
+                "index": 3,
+                "name": "HasNotCredentials"
+              },
+              {
+                "index": 4,
+                "name": "CredentialExists"
+              },
+              {
+                "index": 5,
+                "name": "NoCredentials"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 30,
+                    "typeName": "smart_account_auth::AuthError"
+                  }
+                ],
+                "index": 6,
+                "name": "VerifiableAuth"
+              }
+            ]
+          }
+        },
+        "path": [
+          "azero_account_registry",
+          "error",
+          "ContractError"
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "type": {
+        "def": {
+          "variant": {
+            "variants": [
+              {
+                "index": 0,
+                "name": "NoCredentials"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 22,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 1,
+                "name": "InvalidLength"
+              },
+              {
+                "index": 2,
+                "name": "RecoveryParam"
+              },
+              {
+                "index": 3,
+                "name": "RecoveryMismatch"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 22,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 4,
+                "name": "Signature"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 22,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 5,
+                "name": "Recovery"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 22,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 6,
+                "name": "Generic"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 22,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 7,
+                "name": "Crypto"
+              },
+              {
+                "fields": [
+                  {
+                    "type": 22,
+                    "typeName": "String"
+                  }
+                ],
+                "index": 8,
+                "name": "SemVer"
+              }
+            ]
+          }
+        },
+        "path": [
+          "saa_common",
+          "errors",
+          "AuthError"
+        ]
+      }
+    },
+    {
+      "id": 31,
+      "type": {
+        "def": {
+          "primitive": "u128"
+        }
+      }
+    },
+    {
+      "id": 32,
+      "type": {
+        "def": {
+          "primitive": "u64"
+        }
+      }
+    },
+    {
+      "id": 33,
+      "type": {
+        "def": {
+          "primitive": "u32"
+        }
+      }
+    },
+    {
+      "id": 34,
+      "type": {
+        "def": {
+          "variant": {}
+        },
+        "path": [
+          "ink_env",
+          "types",
+          "NoChainExtension"
+        ]
+      }
+    }
+  ],
+  "version": "4"
+}

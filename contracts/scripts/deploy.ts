@@ -18,14 +18,19 @@ const main = async () => {
   const initParams = await initPolkadotJs()
   const { api, chain, account } = initParams
 
-  // Deploy contract
-  const { abi, wasm } = await getDeploymentData('dummy')
-  const dummy = await deployContract(api, account, abi, wasm, 'default', [])
+  for (const contract of ['azero_account_registry', 'azero_smart_account']) {
+    const { abi, wasm } = await getDeploymentData(contract)
+    console.log(`Deploying ${contract} to ${chain.network}...`)
+    console.log(`  - Account: ${account.address}`)
+    console.log(`  - ABI: ${JSON.stringify(abi, null, 2)}`)
 
-  // Write contract addresses to `{contract}/{network}.ts` file(s)
-  await writeContractAddresses(chain.network, {
-    dummy,
-  })
+    const dummy = await deployContract(api, account, abi, wasm, 'default', [])
+
+    // Write contract addresses to `{contract}/{network}.ts` file(s)
+    await writeContractAddresses(chain.network, {
+      dummy,
+    })
+  }
 }
 
 main()
