@@ -1,4 +1,4 @@
-# AzeroSCA - Smart Contract Account System for Aleph Zero
+# AzeroSCA - Aleph Zero Smart Contract Account System
 
 ## Project Purpose
 
@@ -8,27 +8,27 @@ AzeroSCA aims to redefine blockchain account management on Aleph Zero by introdu
 
 In the evolving landscape of blockchain technology, managing digital assets securely and efficiently remains a significant challenge. Traditional externally owned accounts (EOAs) offer limited security and flexibility, especially for complex operations or collaborative asset management. AzeroSCA solves this by:
 
-- Enhancing Security: Utilizes multi-signature transactions and customizable security protocols, significantly reducing the risk of unauthorized access.
-- Increasing Flexibility: Supports any signing scheme, allowing for seamless integration with existing wallets and tools.
-- Improving Accessibility: Makes blockchain interactions more user-friendly, encouraging wider adoption and engagement.
-- Facilitating Decentralization: Ensures that account management is fully decentralized, aligning with the core principles of blockchain technology.
+- **Enhancing Security:** Utilizes multi-signature transactions and customizable security protocols, significantly reducing the risk of unauthorized access.
+- **Increasing Flexibility:** Supports any signing scheme, allowing for seamless integration with existing wallets and tools.
+- **Improving Accessibility:** Makes blockchain interactions more user-friendly, encouraging wider adoption and engagement.
+- **Facilitating Decentralization:** Ensures that account management is fully decentralized, aligning with the core principles of blockchain technology.
 
 ## Key Ideas
 
 AzeroSCA's core concepts revolve around:
 
-- Decentralized Account Registry: A blockchain-based registry that records smart contract accounts, enabling complex and secure account management strategies.
-- Multi-Signature Support: Allows accounts to require multiple signatures for transactions, enhancing security and collaborative governance.
-- Customizable Security Policies: Users can define their security parameters, such as recovery mechanisms and transaction limits.
-- Interoperability with Existing Wallets: Integration with widely used wallets like MetaMask, ensuring a familiar and accessible user experience.
+- **Decentralized Account Registry:** A blockchain-based registry that records smart contract accounts, enabling complex and secure account management strategies.
+- **Multi-Signature Support:** Allows accounts to require multiple signatures for transactions, enhancing security and collaborative governance.
+- **Customizable Security Policies:** Users can define their security parameters, such as recovery mechanisms and transaction limits.
+- **Interoperability with Existing Wallets:** Integration with widely used wallets like MetaMask, ensuring a familiar and accessible user experience.
 
 ## Architecture Overview
 
 AzeroSCA's architecture is designed to be modular and scalable, comprising several key components:
 
-- Smart Contract Framework: At the heart of AzeroSCA are two smart contracts deployed on Aleph Zero. These contracts handle account creation and registration, transaction processing, and security policy enforcement.
-- Account Registry: A decentralized ledger that records all smart contract accounts and their associated policies, accessible on-chain for transparency and security.
-- User Interface (UI): A web-based UI that interacts with the smart contracts, providing a user-friendly way to manage accounts, view transaction history, and configure security settings.
+- **Smart Contract Framework:** At the heart of AzeroSCA are two smart contracts deployed on Aleph Zero. These contracts handle account creation and registration, transaction processing, and security policy enforcement.
+- **Account Registry:** A decentralized ledger that records all smart contract accounts and their associated policies, accessible on-chain for transparency and security.
+- **User Interface (UI):** A web-based UI that interacts with the smart contracts, providing a user-friendly way to manage accounts, view transaction history, and configure security settings.
 
 ## Potential Future Roadmap
 
